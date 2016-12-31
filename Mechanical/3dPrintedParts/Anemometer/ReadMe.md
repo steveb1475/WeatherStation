@@ -1,0 +1,3 @@
+Anemometer files.
+
+I tried several different anemometer designs from Thingeverse and several differnt of my own designs with differnt length arms and differnt numbers of cups. The current design uses very shor arms and three cups based on my non-scientific testing of sticking it on my fence and observing it's response to wind. The hub has a hole to mount a 3mm neodynium magnet that is sensed by a hall effect sensor embedded in the mounting bracket. I had some 626-2RSH bearings (19mmX6mmX6mm) on hand so that is what I am using for both the anemometer and vane. I removed both rubber seals to reduce friction.
