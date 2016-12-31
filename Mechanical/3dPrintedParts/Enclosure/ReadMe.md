@@ -5,3 +5,4 @@ The enclosure houses the ESP8266, 18650 battery, power management module and the
 Todo:
 - [ ] Modify enclosure for WEMOS D1 mini
 - [ ] Improve weather proofing
+- [ ] Incorporate mounting clamp into design
