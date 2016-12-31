@@ -1,6 +1,6 @@
 # Backyard 3d printed ESP8266 Weather Station
 
-I've been working on this project off and on for a while and wanted to try out github so I'm transfering everything to my first project.
+I've been working on this project off and on for a while and wanted to try out github so I'm transfering everything to my first project. Be advised that this is a work in progress and that I am a noob at programming and 3d printing.
 
 The goal of this project is to create a backyard weather station. The brains of the weather station will be an ESP8266 programmed with the Arduino IDE that will collect and periodically send weather data to a MySQL database on a local LAMP server. Data will be accessible from a webpage.
 
