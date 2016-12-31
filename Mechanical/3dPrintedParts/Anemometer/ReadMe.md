@@ -8,3 +8,9 @@ I had some 626-2RSH bearings (19mmX6mmX6mm) on hand so that is what I am using f
 
 The cups I used are 50mm plastic ball Christmas ornaments from ebay, banggood, etc.
 http://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.X50mm+plastic+ball.TRS0&_nkw=50mm+plastic+ball&_sacat=0
+
+The mounting arm for the anemometer has a recess for the hall effect sensor and a PG7 cable gland. The mount is half of the clamp to mount on the pipe and the other half of the clamp is the mount for the wind vane. I have concerns about the robustness of the current design, I'm afraid that it may sag over time.
+
+ToDo:
+- [ ] Add threads to the PG7 cable gland hole
+- [ ] Improve pipe clamp
