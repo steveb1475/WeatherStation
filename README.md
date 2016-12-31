@@ -1,10 +1,9 @@
-# WeatherStation
-3d Printed ESP8266 Weather Station
+# Backyard 3d printed ESP8266 Weather Station
+
 
 The goal of this project is to create a backyard weather station. The brains of the weather station will be an ESP8266 that will collect and periodically send weather data to a MySQL database on a local LAMP server.
 
-Weather data to be collected by the weather station:
-
+# Weather data to be collected by the weather station:
   Temperature
   
   Humidity
