@@ -1,4 +1,4 @@
-Solar panel parts
+#Solar panel parts
 
 The solar cells that I used are these from ebay:
 http://www.ebay.com/itm/6V-0-6W-Solar-Panel-Poly-Module-DIY-Small-Cell-Charger-/282045545414?hash=item41ab397bc6
