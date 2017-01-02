@@ -1,6 +1,6 @@
 #Stevenson Screen Parts
 
-![Stevenson Screen](/Pictures/Stevenson Screen.jpg)
+![Stevenson Screen](/Images/Stevenson Screen.jpg)
 
 The Stevenson screen is remixed from Galto2000's design on Thingiverse http://www.thingiverse.com/thing:83969
 
