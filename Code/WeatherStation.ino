@@ -3,6 +3,7 @@
 
 const char* ssid = "barneyzoo";
 const char* password = "14a28b14a2";
+const char* host = "10.0.0.81";
 
 /* ==== Defines ==== */
 #define SERIAL_BAUD 115200
@@ -16,8 +17,6 @@ float temp(NAN), hum(NAN), pres(NAN);
 float altitude(NAN);
 float dewPoint(NAN);
   
-WiFiServer server(80);
-
 
 void setup()
 {
@@ -33,9 +32,6 @@ void setup()
   }
   Serial.println(" connected");
 
-  server.begin();
-  Serial.printf("Web server started, open %s in a web browser\n", WiFi.localIP().toString().c_str());
-
   while(!bme.begin()){
   Serial.println("Could not find BME280 sensor!");
   delay(1000);
@@ -43,61 +39,60 @@ void setup()
 }
 
 
-// prepare a web page to be send to a client (web browser)
-String prepareHtmlPage()
-{
-  String htmlPage = 
-     String("HTTP/1.1 200 OK\r\n") +
-            "Content-Type: text/html\r\n" +
-            "Connection: close\r\n" +  // the connection will be closed after completion of the response
-            "Refresh: 5\r\n" +  // refresh the page automatically every 5 sec
-            "\r\n" +
-            "<!DOCTYPE HTML>" +
-            "<html>" +
-            "Temperature:  " + String(temp) +
-            "   Humidity:  " + String(hum) +
-            "   Pressure:  " + String(pres) +
-            "   Altitude:  " + String(altitude) +
-            "   Dew point:  " + String(dewPoint) +
-            "</html>" +
-            "\r\n";
-  return htmlPage;
-}
-
 
 void loop()
 {
   /* From example BME280_Test */
    printBME280Data(&Serial);
    printBME280CalculatedData(&Serial);
-   delay(500);
-   
-  WiFiClient client = server.available(); 
-  // wait for a client (web browser) to connect
-  if (client)
-  {
-    Serial.println("\n[Client connected]");
-    while (client.connected())
-    {
-      // read line by line what the client (web browser) is requesting
-      if (client.available())
-      {
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-        // wait for end of client's request, that is marked with an empty line
-        if (line.length() == 1 && line[0] == '\n')
-        {
-          client.println(prepareHtmlPage());
-          break;
-        }
-      }
-    }
-    delay(1); // give the web browser time to receive the data
+   delay(30000);
 
-    // close the connection:
-    client.stop();
-    Serial.println("[Client disonnected]");
+  Serial.print("connecting to ");
+  Serial.println(host);
+  
+  // Use WiFiClient class to create TCP connections
+  WiFiClient client;
+  const int httpPort = 80;
+  if (!client.connect(host, httpPort)) {
+    Serial.println("connection failed");
+    return;
   }
+  
+  // We now create a URI for the request
+  String url = "/weather/storedata.php";
+  url += "?tempf=";
+  url += temp;
+  url += "&press=";
+  url += pres;
+  url += "&humid=";
+  url += hum;
+  url += "&windv=123";
+  url += "&windd=456";
+  
+  Serial.print("Requesting URL: ");
+  Serial.println(url);
+  
+  // This will send the request to the server
+  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" + 
+               "Connection: close\r\n\r\n");
+  unsigned long timeout = millis();
+  while (client.available() == 0) {
+    if (millis() - timeout > 5000) {
+      Serial.println(">>> Client Timeout !");
+      client.stop();
+      return;
+    }
+  }
+  
+  // Read all the lines of the reply from server and print them to Serial
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }
+  
+  Serial.println();
+  Serial.println("closing connection");
 }
 
 /* From example BME280_Test */
