@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <BME280.h>
 
-const char* ssid = "barneyzoo";
-const char* password = "14a28b14a2";
-const char* host = "10.0.0.81";
+const char* ssid = "yourssid";
+const char* password = "yourpw";
+const char* host = "yourserver";
 
 /* ==== Defines ==== */
 #define SERIAL_BAUD 115200
